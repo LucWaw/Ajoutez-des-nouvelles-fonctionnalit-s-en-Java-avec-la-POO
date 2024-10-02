@@ -1,20 +1,45 @@
 package com.openclassrooms.myrepo.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
- * Une classe représentant une tâche avec une description.
+ * Une classe représentant une tâche avec une description et une date d'échéance.
  */
 public class Task {
     private String description;
 
+
+    private Date dueTime;
+
+
     /**
-     * Constructeur pour créer une nouvelle tâche avec une description.
+     * Constructeur pour créer une nouvelle tâche avec une description et une date limite.
      *
      * @param description La description de la tâche.
+     * @param dueTime La date limite de la tâche.
      */
-    public Task(String description) {
+    public Task(String description, Date dueTime) {
         this.description = description;
+        this.dueTime = dueTime;
+    }
+
+    /**
+     * Obtient la date limite de la tâche.
+     *
+     * @return La date limite de la tâche.
+     */
+    public Date getDueTime() {
+        return dueTime;
+    }
+
+    /**
+     * Modifie la date limite de la tâche.
+     *
+     * @param dueTime La nouvelle date limite de la tâche.
+     */
+    public void setDueTime(Date dueTime) {
+        this.dueTime = dueTime;
     }
 
     /**
@@ -36,26 +61,26 @@ public class Task {
     }
 
     /**
-     * Vérifie si deux objets Task sont égaux en comparant leurs descriptions.
+     * Vérifie si deux objets Task sont égaux en comparant leurs descriptions et leurs dates d'échéance.
      *
      * @param o L'objet à comparer.
-     * @return Vrai si les descriptions sont égales, sinon faux.
+     * @return Vrai si les descriptions et les dates d'échéance sont égales, sinon faux.
      */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(description, task.description);
+        return Objects.equals(description, task.description) && Objects.equals(dueTime, task.dueTime);
     }
 
     /**
-     * Calcule le code de hachage en utilisant la description de la tâche.
+     * Calcule le code de hachage en utilisant la description et la date d'échéance de la tâche.
      *
      * @return Le code de hachage calculé.
      */
     @Override
     public int hashCode() {
-        return Objects.hash(description);
+        return Objects.hash(description, dueTime);
     }
 }
